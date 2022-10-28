@@ -1,27 +1,65 @@
 package study;
 
+import java.util.Arrays;
+import java.util.Iterator;
 import java.util.Scanner;
 
 public class StringCalculator {
 
     private String[] values;
 
-    public void calculate(Scanner scanner) {
+    public void start() {
+        Scanner scanner = new Scanner(System.in);
+        values = scanner.nextLine().split(" ");
+        if (!isValidateString()) {
+            return;
+        }
+        calculate();
+    }
+
+    public void start(Scanner scanner) {
         String value = scanner.nextLine();
         values = value.split(" ");
+        if (!isValidateString()) {
+            return;
+        }
+        calculate();
+    }
 
+    private boolean isValidateString() {
         if (values.length == 0 || values.length % 2 != 1 ) {
-            System.out.println("String are not invalid");
+            System.out.println("test");
+            return false;
         }
 
-        String state;
+        return true;
+    }
+
+    private void calculate() {
+        String state = "";
         int prevNumber = Integer.parseInt(values[0]);
         for (int i = 1; i < values.length; i ++) {
-            if (i % 2 == 0) {
+            if (i % 2 == 1) {
                 state = values[i];
+            } else {
+                int currNumber = Integer.parseInt(values[i]);
+                switch (state){
+                    case "+":
+                        prevNumber = add(prevNumber, currNumber);
+                        break;
+                    case "-" :
+                        prevNumber = subtract(prevNumber, currNumber);
+                        break;
+                    case "*" :
+                        prevNumber = multiply(prevNumber, currNumber);
+                        break;
+                    case "/" :
+                        prevNumber = divide(prevNumber, currNumber);
+                        break;
+                }
             }
         }
-
+        System.out.println(prevNumber);
     }
 
     private int add(int a, int b) {
