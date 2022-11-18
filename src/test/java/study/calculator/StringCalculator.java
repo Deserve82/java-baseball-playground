@@ -1,7 +1,5 @@
-package study;
+package study.calculator;
 
-import java.util.Arrays;
-import java.util.Iterator;
 import java.util.Scanner;
 
 public class StringCalculator {
@@ -11,7 +9,7 @@ public class StringCalculator {
     public void start() {
         Scanner scanner = new Scanner(System.in);
         values = scanner.nextLine().split(" ");
-        if (!isValidateString()) {
+        if (isValidateString()) {
             return;
         }
         calculate();
@@ -20,40 +18,40 @@ public class StringCalculator {
     public void start(Scanner scanner) {
         String value = scanner.nextLine();
         values = value.split(" ");
-        if (!isValidateString()) {
+        if (isValidateString()) {
             return;
         }
         calculate();
     }
 
     private boolean isValidateString() {
-        if (values.length == 0 || values.length % 2 != 1 ) {
+        if (values.length == 0 || values.length % 2 != 1) {
             System.out.println("test");
-            return false;
+            return true;
         }
 
-        return true;
+        return false;
     }
 
     private void calculate() {
         String state = "";
         int prevNumber = Integer.parseInt(values[0]);
-        for (int i = 1; i < values.length; i ++) {
+        for (int i = 1; i < values.length; i++) {
             if (i % 2 == 1) {
                 state = values[i];
             } else {
                 int currNumber = Integer.parseInt(values[i]);
-                switch (state){
+                switch (state) {
                     case "+":
                         prevNumber = add(prevNumber, currNumber);
                         break;
-                    case "-" :
+                    case "-":
                         prevNumber = subtract(prevNumber, currNumber);
                         break;
-                    case "*" :
+                    case "*":
                         prevNumber = multiply(prevNumber, currNumber);
                         break;
-                    case "/" :
+                    case "/":
                         prevNumber = divide(prevNumber, currNumber);
                         break;
                 }

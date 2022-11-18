@@ -1,12 +1,13 @@
-package study;
-
-import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
+package study.practice;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
+
 class StringTest {
+
     @Test
     void replace() {
         String actual = "abc".replace("b", "d");
@@ -16,7 +17,7 @@ class StringTest {
     @Test
     void splitTest() {
         String before = "1,2";
-        String[] after =  before.split(",");
+        String[] after = before.split(",");
         assertThat(after).contains("1", "2").containsExactly("1", "2");
     }
 
@@ -28,7 +29,7 @@ class StringTest {
     }
 
     public String subStringBracket(String str) {
-        return str.substring(1, str.length()-1);
+        return str.substring(1, str.length() - 1);
     }
 
     @Test

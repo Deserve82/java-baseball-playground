@@ -1,4 +1,4 @@
-package study;
+package study.calculator;
 
 public enum Calculation {
     ADD,
