@@ -27,4 +27,8 @@ public class BallResult {
         return strike;
     }
 
+    public boolean isNothing() {
+        return this.strike == 0 && this.ball == 0;
+    }
+
 }
