@@ -22,6 +22,13 @@ public class Ball {
         return BallStatus.NOTHING;
     }
 
+    public BallStatus compare(Balls counterpart) {
+        return counterpart.getBalls()
+                .stream().map(ball -> ball.compare(this))
+                .filter(ballStatus -> !ballStatus.isNothing())
+                .findFirst().orElse(BallStatus.NOTHING);
+    }
+
     public int getValue() {
         return value.getValue();
     }

@@ -6,7 +6,9 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import domain.ball.Ball;
 import domain.ball.BallStatus;
+import domain.ball.Balls;
 import java.security.InvalidParameterException;
+import java.util.Arrays;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
@@ -55,4 +57,27 @@ class BallTest {
         assertThat(computer.compare(user)).isEqualTo(BallStatus.STRIKE);
     }
 
+    @Test
+    void test_compare_balls_strike() {
+        Ball computer = new Ball(1, 1);
+        Balls balls = new Balls(Arrays.asList(1, 2, 3));
+
+        assertThat(computer.compare(balls)).isEqualTo(BallStatus.STRIKE);
+    }
+
+    @Test
+    void test_compare_balls_ball() {
+        Ball computer = new Ball(2, 1);
+        Balls balls = new Balls(Arrays.asList(1, 2, 3));
+
+        assertThat(computer.compare(balls)).isEqualTo(BallStatus.BALL);
+    }
+
+    @Test
+    void test_compare_balls_nothing() {
+        Ball computer = new Ball(2, 4);
+        Balls balls = new Balls(Arrays.asList(1, 2, 3));
+
+        assertThat(computer.compare(balls)).isEqualTo(BallStatus.NOTHING);
+    }
 }
