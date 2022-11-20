@@ -1,4 +1,4 @@
-package domain.Ball;
+package domain.ball;
 
 import java.security.InvalidParameterException;
 
